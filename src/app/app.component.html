@@ -1,0 +1,45 @@
+<!-- form contains all user details and references to validations: -->
+<form class="box" [formGroup]="myGroup"(ngSubmit)="onSubmit()">
+  <h1 id="logintoregister">Login</h1>
+  <div class="group">
+    <input class="inputMaterial" name="tz" data-type="tz" type="text" formControlName="tz"  [ngClass]="{ 'is-invalid': submitted && f.tz.errors }">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Tz</label> 
+      <div class="alert" *ngIf="f.tz.touched&&f.tz.errors.required">Tz is required</div>
+      <div class="alert" *ngIf="f.tz.value&&f.tz.touched&&f.tz.errors.minlength||f.tz.errors.maxlength">Tz must be 9 chars</div>
+      <div  class="alert" *ngIf="f.tz.value&&f.tz.touched&&f.tz.errors.validateTz">Tz is not ok</div>
+   </div>
+  <div class="group">
+    <input class="inputMaterial" type="number" name="age" data-type="age" formControlName="age"  [ngClass]="{ 'is-invalid': submitted && f.age.errors }">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Age</label>
+      <div class="alert" *ngIf="f.age.value&&f.age.touched&&f.age.errors.validateAge">Age must be between 0 - 120</div>
+    <div class="alert" *ngIf="f.age.touched&&f.age.errors.required">Age is required</div>
+  </div>
+  <div class="group">
+    <input class="inputMaterial" type="text" formControlName="name" name="name" data-type="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Name</label>
+      <div class="alert" *ngIf="f.name.value&&f.name.touched&&f.name.errors.validateName">Name must have between 3 - 15 chars</div>
+    <div  class="alert"*ngIf="f.name.touched&&f.name.errors.required">Name is required</div>
+</div>
+  <div class="group">
+    <input class="inputMaterial" type="checkbox" name="isMale" data-type="isMale"  formControlName="isMale" checked="checked">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>isMale</label>
+  </div>
+  <div class="group">
+    <input class="inputMaterial" type="text" formControlName="country" name="country" data-type="country"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Country</label>
+      <div class="alert" *ngIf="f.country.value&& f.country.touched&&f.country.errors.validateCountry">Country is not ok</div>
+    <div class="alert" *ngIf="f.country.touched&&f.country.errors.required">Country is required</div>
+</div>
+
+  <input type="submit" id="buttonlogintoregister" value="Register">
+</form>
